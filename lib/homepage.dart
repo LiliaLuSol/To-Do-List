@@ -1,6 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:to_do_list/widgets/custom_text_form_field.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,11 +9,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    bool status = true;
+    bool status = false;
     return Scaffold(
       backgroundColor: Colors.cyan[400],
       appBar: AppBar(
@@ -28,12 +28,9 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: Colors.cyan[400],
       ),
-      body:
-
-        status ? Stack(
-          textDirection: TextDirection.ltr,
-          children: <Widget>[
-        Center(
+      body: status
+          ? Stack(textDirection: TextDirection.ltr, children: <Widget>[
+              Center(
                 child: Container(
                   width: size.width / 1.1,
                   height: size.height / 1.175,
@@ -44,50 +41,66 @@ class _HomePageState extends State<HomePage> {
               ),
               Column(
                 children: [
-         Text(
-              "Search recent task",),
-          const SizedBox(
-            height: 20,
-          ),
-          Expanded(
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return Text('data');
-                },
-                separatorBuilder:
-                    (BuildContext context, int index) {
-                  return const Divider(
-                    color: Colors.blueGrey,
-                  );
-                },
-              ))
-        ],
-      )])
-          :
-      Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.more_horiz,
-              color: Colors.white70,
-              size: size.height * .20,
+                  CustomTextFormField(
+                      hintText: "Search recent task",
+                      controller: searchController,
+                      textInputType: TextInputType.text,
+                      prefix: const Icon(
+                        Icons.search,
+                        color: Colors.black26,
+                      ),
+                      fillColor: Colors.white70,
+                      onChanged: (value) {}),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Expanded(
+                      child: ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: 20,
+                    itemBuilder: (context, index) {
+                      return Text('data');
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const Divider(
+                        color: Colors.blueGrey,
+                      );
+                    },
+                  )),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              )
+            ])
+          : Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.more_horiz,
+                    color: Colors.white70,
+                    size: size.height * .20,
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  const Text(
+                    'It\'s still empty.\nAdd something!',
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 30),textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(
-              height: 50,
-            ),
-            Text(
-              'It\'s still empty. Add something!',
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(backgroundColor: Colors.brown[200],
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.brown[200],
           child: Icon(
-            Icons.add_circle,color: Colors.brown[900],
+            Icons.add_circle,
+            color: Colors.brown[900],
           ),
           onPressed: () {}),
     );
