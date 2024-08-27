@@ -27,4 +27,11 @@ class TaskProvider with ChangeNotifier {
     await DatabaseHelper.instance.deleteTask(id);
     await fetchTasks();
   }
+
+  Future<void> deleteMultipleTasks(List<int> ids) async {
+    for (int id in ids) {
+      await DatabaseHelper.instance.deleteTask(id);
+    }
+    fetchTasks();
+  }
 }
