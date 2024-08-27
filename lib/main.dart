@@ -4,15 +4,6 @@ import 'package:to_do_list/pages/task_list_page.dart';
 import 'package:to_do_list/utils/provider.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-// Future<void> main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   if (Platform.isWindows) {
-//     sqfliteFfiInit();
-//     databaseFactory = databaseFactoryFfi;
-//   }
-//   runApp(MyApp());
-// }
-
 void main() {
   runApp(MyApp());
 }

@@ -9,7 +9,6 @@ class TaskListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final taskProvider = Provider.of<TaskProvider>(context);
     taskProvider.fetchTasks();
-    print('rty${taskProvider.tasks.length}');
     return Scaffold(
       appBar: AppBar(title: Text('To Do List')),
       body: Consumer<TaskProvider>(

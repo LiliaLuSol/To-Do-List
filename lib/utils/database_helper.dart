@@ -9,10 +9,6 @@ class DatabaseHelper {
   DatabaseHelper._init();
 
   factory DatabaseHelper() {
-    if (instance == null) {
-      instance = DatabaseHelper
-          ._init();
-    }
     return instance;
   }
 
